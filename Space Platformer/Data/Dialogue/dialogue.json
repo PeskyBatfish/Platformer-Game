@@ -1,0 +1,24 @@
+{
+	"NPC_cindy": [		
+		{"name": "???", "text": "Hewwo, Rose!"},
+		{"name": "Rose", "text": "Hi there, Cindy."},
+		{"name": "Cindy", "text": "Cowwecting stuff?"},
+		{"name": "Rose", "text": "Not for too long. Just picking up whatever these shiny things scattered around might be."},
+		{"name": "Cindy", "text": "Ooh, good wuck wiv dat!"}
+	],
+	"NPC_lewis": [
+		{"name": "Lewis", "text": "Whaddaya want, eh?"}
+	],
+	"Sign_tutorial": [
+		{"name": "It's me, Mr. Signpost!", "text": "Wowee! You did it! You clicked on a signpost! I'm so proud of you~"}
+	],
+	"Sign_ladder": [
+		{"name": "It's me, Mr. Signpost again...", "text": "Golly, you sure are good at climbing ladders!"}
+	],
+	"Trash": [
+		{"name": "Trashbag", "text": "It's a literal trashbag. Why are you looking at this?"}
+	],
+	"Sign_1": [
+		{"name": "Slime Pit Sign", "text": "Welcome to the slime pit. Please do not stomp on our precious slimes."}
+	]
+}
