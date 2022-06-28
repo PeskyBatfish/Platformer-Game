@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Tileset_Snow.png" type="Texture" id=2]
@@ -9,7 +9,6 @@
 [ext_resource path="res://Obstacles/Killbox.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Player/HUD.gd" type="Script" id=8]
 [ext_resource path="res://Player/TextboxDisplay.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Player/TextboxDisplay.gd" type="Script" id=10]
 [ext_resource path="res://Objects/Object.tscn" type="PackedScene" id=11]
 
 [sub_resource type="TileSet" id=1]
@@ -277,13 +276,12 @@ position = Vector2( -106.787, 1172.68 )
 script = ExtResource( 8 )
 
 [node name="TextboxDisplay" parent="HUD" instance=ExtResource( 9 )]
-script = ExtResource( 10 )
 
 [node name="Objects" type="Node2D" parent="."]
 
 [node name="Object" parent="Objects" instance=ExtResource( 11 )]
 position = Vector2( 672, 360 )
-object_name = "demo_panel"
-dialogue_id = "demo_dialogue"
+object_type = "READ"
+dialogue_id = "demo_panel"
 
 [connection signal="area_entered" from="Killbox" to="Killbox" method="_on_Killbox_area_entered"]

@@ -20,6 +20,12 @@ const FLOOR_MAX_ANGLE = deg2rad(60)
 const BULLET = preload("res://Player/Bullet.tscn")
 var bullet_strength = 10
 
+# Variables for dialogue
+var near_interactable = null
+
+func _ready():
+	Global.player = self
+
 func _physics_process(_delta):
 	match state:
 		States.AIR:
@@ -47,6 +53,8 @@ func _physics_process(_delta):
 		States.FLOOR:
 			if not is_on_floor():
 				state = States.AIR
+			elif activate_speech_object():
+				continue
 
 			# Basic movement
 			if Input.is_action_pressed("right"):
@@ -88,7 +96,6 @@ func set_direction():
 	direction = 1 if $Sprite.flip_h else -1
 	$Wallchecker.rotation_degrees = 90 * -direction
 	$InteractablesChecker.position.x = direction * 16
-	$HiddenInteractablesChecker.position.x = direction * 16
 
 # Return a wall collision
 func is_near_wall():
@@ -113,3 +120,29 @@ func fire():
 			b.position.x = position.x + (direction * 48)
 		b.bullet_strength = bullet_strength
 		get_parent().add_child(b)
+
+
+# Stop or start the player movement
+func set_active(active):
+	set_physics_process(active)
+	set_process(active)
+	set_process_input(active)
+
+
+############################
+# DIALOGUE FUNCTIONS
+############################
+# Check if a player is overlapping an object to interact with
+func _on_InteractablesChecker_area_entered(area):
+	near_interactable = area
+
+func _on_InteractablesChecker_area_exited(area):
+	near_interactable = null
+
+# Player interacts with object, triggering dialogue
+func activate_speech_object():
+	if Input.is_action_just_pressed("interact"):
+		if near_interactable != null:
+			near_interactable.start_speech()
+	return
+

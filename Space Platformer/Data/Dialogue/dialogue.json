@@ -1,10 +1,7 @@
 {
-	"NPC_cindy": [		
-		{"name": "???", "text": "Hewwo, Rose!"},
-		{"name": "Rose", "text": "Hi there, Cindy."},
-		{"name": "Cindy", "text": "Cowwecting stuff?"},
-		{"name": "Rose", "text": "Not for too long. Just picking up whatever these shiny things scattered around might be."},
-		{"name": "Cindy", "text": "Ooh, good wuck wiv dat!"}
+	"demo_panel": [		
+		{"icon_id": 0, "name": "Malfunctioning Computer Panel", "text": "ERROR: User name not recognized."},
+		{"icon_id": 1, "name": "Rose", "text": "Guess I won't be getting anything out of this terminal..."}
 	],
 	"NPC_lewis": [
 		{"name": "Lewis", "text": "Whaddaya want, eh?"}

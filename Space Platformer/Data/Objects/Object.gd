@@ -1,18 +1,16 @@
-extends StaticBody2D
+extends Area2D
 
-export var object_name := ''
+export var object_type := ''
 export var dialogue_id := ''
-
-signal start_dialogue
 
 
 func _ready():
 	$Sprite.set_visible(false)
 
-
-func start_talking():
-	emit_signal("start_dialogue", dialogue_id)
+func start_speech():
+	Global.textbox.start_dialogue(dialogue_id)
 	pass
+
 #
 #
 #func activate_arrow():
