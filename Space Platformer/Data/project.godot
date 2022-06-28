@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Control",
+"class": "Menu",
+"language": "GDScript",
+"path": "res://Menus/Menu_Generic.gd"
+} ]
+_global_script_class_icons={
+"Menu": ""
+}
+
 [application]
 
 config/name="Space Platformer"

@@ -29,18 +29,19 @@ func _physics_process(_delta):
 			$AnimationPlayer.play("Air")
 
 			# Basic air movement
-			if Input.is_action_pressed("right"):
-				velocity.x = lerp(velocity.x, SPEED, 0.1) if velocity.x < SPEED else lerp(velocity.x, SPEED, 0.03)
-				$Sprite.flip_h = true
-			elif Input.is_action_pressed("left"):
-				velocity.x = lerp(velocity.x, -SPEED, 0.1) if velocity.x > -SPEED else lerp(velocity.x, -SPEED, 0.03)
-				$Sprite.flip_h = false
-			else:
-				velocity.x = lerp(velocity.x, 0, 0.2)
-				# Remove the excess frames of slowing down
-				if !Input.is_action_pressed("right") and !Input.is_action_pressed("left"):
-					if velocity.x < 1 and velocity.x > -1:
-						velocity.x = 0
+			if UI.current_menu_id == UI.MENUS.ingame:
+				if Input.is_action_pressed("right"):
+					velocity.x = lerp(velocity.x, SPEED, 0.1) if velocity.x < SPEED else lerp(velocity.x, SPEED, 0.03)
+					$Sprite.flip_h = true
+				elif Input.is_action_pressed("left"):
+					velocity.x = lerp(velocity.x, -SPEED, 0.1) if velocity.x > -SPEED else lerp(velocity.x, -SPEED, 0.03)
+					$Sprite.flip_h = false
+				else:
+					velocity.x = lerp(velocity.x, 0, 0.2)
+					# Remove the excess frames of slowing down
+					if !Input.is_action_pressed("right") and !Input.is_action_pressed("left"):
+						if velocity.x < 1 and velocity.x > -1:
+							velocity.x = 0
 			set_direction()
 			move_and_fall()
 			fire()
@@ -49,27 +50,28 @@ func _physics_process(_delta):
 				state = States.AIR
 
 			# Basic movement
-			if Input.is_action_pressed("right"):
-				velocity.x = lerp(velocity.x, SPEED, 0.1)
-				$AnimationPlayer.play("Walk")
-				$Sprite.flip_h = true
-			elif Input.is_action_pressed("left"):
-				velocity.x = lerp(velocity.x, -SPEED, 0.1)
-				$AnimationPlayer.play("Walk")
-				$Sprite.flip_h = false
-			else:
-				$AnimationPlayer.play("Idle")
-				velocity.x = lerp(velocity.x, 0, 0.2)
-				# Remove the excess frames of slowing down
-				if !Input.is_action_pressed("right") and !Input.is_action_pressed("left"):
-					if velocity.x < 1 and velocity.x > -1:
-						velocity.x = 0
+			if UI.current_menu_id == UI.MENUS.ingame:
+				if Input.is_action_pressed("right"):
+					velocity.x = lerp(velocity.x, SPEED, 0.1)
+					$AnimationPlayer.play("Walk")
+					$Sprite.flip_h = true
+				elif Input.is_action_pressed("left"):
+					velocity.x = lerp(velocity.x, -SPEED, 0.1)
+					$AnimationPlayer.play("Walk")
+					$Sprite.flip_h = false
+				else:
+					$AnimationPlayer.play("Idle")
+					velocity.x = lerp(velocity.x, 0, 0.2)
+					# Remove the excess frames of slowing down
+					if !Input.is_action_pressed("right") and !Input.is_action_pressed("left"):
+						if velocity.x < 1 and velocity.x > -1:
+							velocity.x = 0
 
-			if Input.is_action_just_pressed("jump"):
-				velocity.y = JUMPFORCE
-				state = States.AIR
-			if Input.is_action_pressed("down") and !Input.is_action_pressed("right") and !Input.is_action_pressed("left"):
-				$AnimationPlayer.play("Crouch")
+				if Input.is_action_just_pressed("jump"):
+					velocity.y = JUMPFORCE
+					state = States.AIR
+				if Input.is_action_pressed("down") and !Input.is_action_pressed("right") and !Input.is_action_pressed("left"):
+					$AnimationPlayer.play("Crouch")
 			set_direction()
 			move_and_fall()
 			fire()
@@ -95,21 +97,22 @@ func is_near_wall():
 	return $Wallchecker.is_colliding() and not $Wallchecker.get_collider().is_in_group("one_way")
 
 func fire():
-	if Input.is_action_just_pressed("shoot") and not is_near_wall():
-		var b = BULLET.instance()
-		if Input.is_action_pressed("down") and not is_on_floor():
-			b.horizontal_dir = 0
-			b.vertical_dir = 1
-			b.position.y = position.y + 16
-			b.position.x = position.x
-		elif Input.is_action_pressed("up"):
-			b.horizontal_dir = 0
-			b.vertical_dir = -1
-			b.position.y = position.y - 128
-			b.position.x = position.x
-		else:
-			b.horizontal_dir = direction
-			b.position.y = position.y - 58
-			b.position.x = position.x + (direction * 48)
-		b.bullet_strength = bullet_strength
-		get_parent().add_child(b)
+	if UI.current_menu_id == UI.MENUS.ingame:
+		if Input.is_action_just_pressed("shoot") and not is_near_wall():
+			var b = BULLET.instance()
+			if Input.is_action_pressed("down") and not is_on_floor():
+				b.horizontal_dir = 0
+				b.vertical_dir = 1
+				b.position.y = position.y + 16
+				b.position.x = position.x
+			elif Input.is_action_pressed("up"):
+				b.horizontal_dir = 0
+				b.vertical_dir = -1
+				b.position.y = position.y - 128
+				b.position.x = position.x
+			else:
+				b.horizontal_dir = direction
+				b.position.y = position.y - 58
+				b.position.x = position.x + (direction * 48)
+			b.bullet_strength = bullet_strength
+			get_parent().add_child(b)

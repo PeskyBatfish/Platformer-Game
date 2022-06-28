@@ -4,14 +4,16 @@ enum MENUS {
 	main_menu,
 	pause_menu,
 
-	new_game
+	new_game,
 	save_game,
 	load_game,
-	quite_to_main_menu,
+	quit_to_main_menu_confirmation,
+
+	settings,
 
 	credits,
 	about,
-	exit_game,
+	splash_screen,
 
 	ingame,
 	inventory,
@@ -56,4 +58,9 @@ func set_menu(menu_id):
 	_close_menu(current_menu_id)
 	_open_menu(menu_id)
 	current_menu_id = menu_id
+
+	# for debugging -- set back to "ingame" if there's no valid menu node!
+	if !MENU_RECORDS.has(menu_id) && menu_id != MENUS.ingame:
+		current_menu_id = MENUS.ingame
+
 	return true

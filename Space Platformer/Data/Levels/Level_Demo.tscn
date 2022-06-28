@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Tileset_Snow.png" type="Texture" id=2]
@@ -11,7 +11,9 @@
 [ext_resource path="res://Player/TextboxDisplay.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Player/TextboxDisplay.gd" type="Script" id=10]
 [ext_resource path="res://Objects/Object.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Menus/PauseMenu/PauseMenu.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Menus/PauseMenu/Menu_Pause.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Menus/QuitToMainMenu/Menu_QuitToMainMenu.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Menus/MainMenu/Menu_Main.tscn" type="PackedScene" id=14]
 
 [sub_resource type="TileSet" id=1]
 0/name = "Tileset_BackgroundSnow.png 0"
@@ -280,18 +282,31 @@ script = ExtResource( 8 )
 [node name="TextboxDisplay" parent="HUD" instance=ExtResource( 9 )]
 script = ExtResource( 10 )
 
-[node name="UI" type="Control" parent="HUD"]
+[node name="UI_Root" type="Control" parent="HUD"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="PauseMenu" parent="HUD/UI" instance=ExtResource( 12 )]
-menu_id = 1
-parent_menu = 9
-default_keybind = "ui_cancel"
+[node name="MainMenu" parent="HUD/UI_Root" instance=ExtResource( 14 )]
+visible = false
+
+[node name="PauseMenu" parent="HUD/UI_Root" instance=ExtResource( 12 )]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+
+[node name="QuitToMainMenu" parent="HUD/UI_Root" instance=ExtResource( 13 )]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 
 [node name="Objects" type="Node2D" parent="."]
 
