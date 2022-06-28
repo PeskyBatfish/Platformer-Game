@@ -27,7 +27,7 @@ func _physics_process(_delta):
 				state = States.FLOOR
 				continue
 			$AnimationPlayer.play("Air")
-			
+
 			# Basic air movement
 			if Input.is_action_pressed("right"):
 				velocity.x = lerp(velocity.x, SPEED, 0.1) if velocity.x < SPEED else lerp(velocity.x, SPEED, 0.03)
@@ -38,7 +38,7 @@ func _physics_process(_delta):
 			else:
 				velocity.x = lerp(velocity.x, 0, 0.2)
 				# Remove the excess frames of slowing down
-				if !Input.is_action_pressed("right") and !Input.is_action_pressed("left"): 
+				if !Input.is_action_pressed("right") and !Input.is_action_pressed("left"):
 					if velocity.x < 1 and velocity.x > -1:
 						velocity.x = 0
 			set_direction()
@@ -61,10 +61,10 @@ func _physics_process(_delta):
 				$AnimationPlayer.play("Idle")
 				velocity.x = lerp(velocity.x, 0, 0.2)
 				# Remove the excess frames of slowing down
-				if !Input.is_action_pressed("right") and !Input.is_action_pressed("left"): 
+				if !Input.is_action_pressed("right") and !Input.is_action_pressed("left"):
 					if velocity.x < 1 and velocity.x > -1:
 						velocity.x = 0
-			
+
 			if Input.is_action_just_pressed("jump"):
 				velocity.y = JUMPFORCE
 				state = States.AIR
