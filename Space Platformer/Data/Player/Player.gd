@@ -16,6 +16,9 @@ const SNAP_LENGTH = 12.0
 const FLOOR_NORMAL = Vector2.UP
 const FLOOR_MAX_ANGLE = deg2rad(60)
 
+# Variables for combat
+var invincible = false
+
 # Variables for bullets
 const BULLET = preload("res://Player/Bullet.tscn")
 var bullet_strength = 10
@@ -124,12 +127,37 @@ func fire():
 			b.bullet_strength = bullet_strength
 			get_parent().add_child(b)
 
+# Knockback and invincibility after getting hit by an enemy
+func knockback(var enemyposx, damage_taken):
+	if !invincible:
+		Global.lose_health(damage_taken)
+
+		invincible = true
+		set_modulate(Color(1,.25,0.25,0.5)) # Simple visual feedback, replace
+		velocity.y = JUMPFORCE * 0.4
+		
+		if position.x < enemyposx:
+			velocity.x = -800
+		elif position.x > enemyposx:
+			velocity.x = 800
+		else:
+			velocity.x = 0
+		
+		# Do we need to stop the player from moving after getting hit?
+#		Input.action_release("left")
+#		Input.action_release("right")
+		
+		$Invincibility_Timer.start()
 
 # Stop or start the player movement
 func set_active(active):
 	set_physics_process(active)
 	set_process(active)
 	set_process_input(active)
+
+func _on_Invincibility_Timer_timeout():
+	set_modulate(Color(1,1,1,1))
+	invincible = false
 
 
 ############################
@@ -148,4 +176,3 @@ func activate_speech_object():
 		if near_interactable != null:
 			near_interactable.start_speech()
 	return
-

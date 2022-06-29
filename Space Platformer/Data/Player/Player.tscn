@@ -71,6 +71,7 @@ extents = Vector2( 8, 24 )
 
 [node name="Player" type="KinematicBody2D"]
 scale = Vector2( 2, 2 )
+collision_mask = 0
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -107,5 +108,9 @@ enabled = true
 cast_to = Vector2( -16, 0 )
 collision_mask = 3
 
+[node name="Invincibility_Timer" type="Timer" parent="."]
+wait_time = 0.25
+
 [connection signal="area_entered" from="InteractablesChecker" to="." method="_on_InteractablesChecker_area_entered"]
 [connection signal="area_exited" from="InteractablesChecker" to="." method="_on_InteractablesChecker_area_exited"]
+[connection signal="timeout" from="Invincibility_Timer" to="." method="_on_Invincibility_Timer_timeout"]

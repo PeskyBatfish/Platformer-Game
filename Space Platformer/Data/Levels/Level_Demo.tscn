@@ -9,6 +9,7 @@
 [ext_resource path="res://Obstacles/Killbox.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Player/HUD.gd" type="Script" id=8]
 [ext_resource path="res://Player/TextboxDisplay.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Enemies/Enemy_Rolly.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Objects/Object.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Menus/PauseMenu/Menu_Pause.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Menus/QuitToMainMenu/Menu_QuitToMainMenu.tscn" type="PackedScene" id=13]
@@ -225,7 +226,7 @@ script = ExtResource( 5 )
 motion_mirroring = Vector2( 1024, 768 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/Skybox"]
-position = Vector2( 3.14978, -34.6478 )
+position = Vector2( 0, -32 )
 scale = Vector2( 2, 3 )
 texture = ExtResource( 4 )
 centered = false
@@ -312,5 +313,13 @@ anchor_bottom = 0.5
 position = Vector2( 672, 360 )
 object_type = "READ"
 dialogue_id = "demo_panel"
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Enemy_Rolly" parent="Enemies" instance=ExtResource( 10 )]
+position = Vector2( 528, 384 )
+
+[node name="Enemy_Rolly2" parent="Enemies" instance=ExtResource( 10 )]
+position = Vector2( 88, 352 )
 
 [connection signal="area_entered" from="Killbox" to="Killbox" method="_on_Killbox_area_entered"]
