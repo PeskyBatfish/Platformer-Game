@@ -10,7 +10,8 @@ var dialogue_active = false
 
 # Hide text box on initialization
 func _ready():
-	data = load_dialogue()
+	# Loads the dialogue from the .json file
+	data = Global.load_from_file(dialogue_file)
 	$Textbox.visible = false
 
 
@@ -51,16 +52,6 @@ func next_line():
 
 	$TextBox/LabelName.text = dialogues[current_dialogue_id]['name']
 	$TextBox/LabelMessage.text = dialogues[current_dialogue_id]['text']
-
-# Loads the dialogue from the .json file
-func load_dialogue():
-	var file = File.new()
-	var f := ''
-	if file.file_exists(dialogue_file):
-		file.open(dialogue_file, file.READ)
-		f = file.get_as_text()
-		file.close()
-		return parse_json(f)
 
 # Create a small gap in time so the dialogue doesn't start again immediately
 func _on_Timer_timeout():

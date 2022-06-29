@@ -281,6 +281,7 @@ script = ExtResource( 8 )
 
 [node name="TextboxDisplay" parent="HUD" instance=ExtResource( 9 )]
 script = ExtResource( 10 )
+dialogue_file = "res://Dialogue/dialogue.json"
 
 [node name="UI_Root" type="Control" parent="HUD"]
 anchor_right = 1.0

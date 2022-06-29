@@ -20,6 +20,11 @@ enum MENUS {
 	crafting,
 	gestures,
 
+	campaign_selection,
+	mission_selection,
+	scores,
+	player_records,
+
 	MAX_MENU_ITEM_ID
 }
 
@@ -55,12 +60,11 @@ func _open_menu(menu_id):
 func set_menu(menu_id):
 	if !menu_id_is_valid(menu_id):
 		return false
+	if !MENU_RECORDS.has(menu_id) && menu_id != MENUS.ingame:
+		return false
+
 	_close_menu(current_menu_id)
 	_open_menu(menu_id)
 	current_menu_id = menu_id
-
-	# for debugging -- set back to "ingame" if there's no valid menu node!
-	if !MENU_RECORDS.has(menu_id) && menu_id != MENUS.ingame:
-		current_menu_id = MENUS.ingame
 
 	return true

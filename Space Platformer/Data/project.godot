@@ -28,6 +28,9 @@ config/icon="res://icon.png"
 
 Global="*res://Global.gd"
 UI="*res://UI.gd"
+Game="*res://Game.gd"
+Inventory="*res://Inventory.gd"
+Settings="*res://Settings.gd"
 
 [debug]
 
