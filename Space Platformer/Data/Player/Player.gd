@@ -20,6 +20,9 @@ const FLOOR_MAX_ANGLE = deg2rad(60)
 const BULLET = preload("res://Player/Bullet.tscn")
 var bullet_strength = 10
 
+func _ready():
+	Global.player = self
+
 func _physics_process(_delta):
 	match state:
 		States.AIR:
