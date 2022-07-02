@@ -7,6 +7,7 @@ func _open_handle(filename, ModeFlags):
 	file_handle = File.new()
 	if file_handle.file_exists(filename):
 		file_handle.open(filename, ModeFlags)
+		print("Opening file handle: ", filename)
 		return true
 	else:
 		print("File not found: ", filename)
