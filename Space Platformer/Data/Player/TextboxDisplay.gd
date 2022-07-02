@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-export(String, FILE, "*.json") var dialogue_file
+export(String, FILE, "*.json") var dialogue_file = "res://Dialogue/dialogue.json"
 
 var data = {}
 var current_dialogue_id = 0
@@ -13,21 +13,13 @@ func _ready():
 	# Loads the dialogue from the .json file
 	data = IO.load_json(dialogue_file)
 	$Textbox.visible = false
+	$Textbox/RectIcon/Sprite.scale *= 1.5
+	Global.textbox = self
 
-## Call the 'play' function from NPC, grab the NPC's specific dialogue id
-#func _NPC_start_dialogue(char_id):
-#	if not dialogue_active:
-#		turn_off_player()
-#		$TextBox.visible = true
-#		dialogue_active = true
-#		current_character_id = str(char_id)
-#		current_dialogue_id = -1
-#		next_line()
-
-func _object_start_speech(obj_id):
+func start_dialogue(obj_id):
 	if not dialogue_active:
 		turn_off_player()
-		$TextBox.visible = true
+		$Textbox.visible = true
 		dialogue_active = true
 		current_object_id = str(obj_id)
 		current_dialogue_id = -1
@@ -44,11 +36,12 @@ func next_line():
 	current_dialogue_id += 1
 	if current_dialogue_id >= len(dialogues):
 		$Timer.start()
-		$TextBox.visible = false
+		$Textbox.visible = false
 		return
 
-	$TextBox/LabelName.text = dialogues[current_dialogue_id]['name']
-	$TextBox/LabelMessage.text = dialogues[current_dialogue_id]['text']
+	$Textbox/RectName/MarginContainer/RichTextLabel.text = dialogues[current_dialogue_id]['name']
+	$Textbox/RectDialogue/MarginContainer/RichTextLabel.text = dialogues[current_dialogue_id]['text']
+	$Textbox/RectIcon/Sprite.frame = dialogues[current_dialogue_id]['icon_id']
 
 # Create a small gap in time so the dialogue doesn't start again immediately
 func _on_Timer_timeout():
@@ -57,9 +50,7 @@ func _on_Timer_timeout():
 
 # Turn the player's movement on or off if in dialogue
 func turn_on_player():
-	if Global.player:
-		Global.player.set_active(true)
+	Global.player.set_active(true)
 
 func turn_off_player():
-	if Global.player:
-		Global.player.set_active(false)
+	Global.player.set_active(false)

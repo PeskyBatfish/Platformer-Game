@@ -39,6 +39,11 @@ shapes/collision/shape_color=Color( 1, 1, 1, 0.0980392 )
 shapes/collision/contact_color=Color( 1, 0.109804, 0, 0.8 )
 shapes/navigation/geometry_color=Color( 0, 1, 0.180392, 0.4 )
 
+[display]
+
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
+
 [importer_defaults]
 
 texture={
