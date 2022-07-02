@@ -135,18 +135,18 @@ func knockback(var enemyposx, damage_taken):
 		invincible = true
 		set_modulate(Color(1,.25,0.25,0.5)) # Simple visual feedback, replace
 		velocity.y = JUMPFORCE * 0.4
-		
+
 		if position.x < enemyposx:
 			velocity.x = -800
 		elif position.x > enemyposx:
 			velocity.x = 800
 		else:
 			velocity.x = 0
-		
+
 		# Do we need to stop the player from moving after getting hit?
 #		Input.action_release("left")
 #		Input.action_release("right")
-		
+
 		$Invincibility_Timer.start()
 
 # Stop or start the player movement

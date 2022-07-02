@@ -10,7 +10,8 @@ var dialogue_active = false
 
 # Hide text box on initialization
 func _ready():
-	data = load_dialogue()
+	# Loads the dialogue from the .json file
+	data = IO.load_json(dialogue_file)
 	$Textbox.visible = false
 	$Textbox/RectIcon/Sprite.scale *= 1.5
 	Global.textbox = self
@@ -23,7 +24,6 @@ func start_dialogue(obj_id):
 		current_object_id = str(obj_id)
 		current_dialogue_id = -1
 		next_line()
-
 
 # Go to the next line when player presses the 'interact' key.
 # If the last line has been reached, then the dialogue box closes.
@@ -43,21 +43,10 @@ func next_line():
 	$Textbox/RectDialogue/MarginContainer/RichTextLabel.text = dialogues[current_dialogue_id]['text']
 	$Textbox/RectIcon/Sprite.frame = dialogues[current_dialogue_id]['icon_id']
 
-# Loads the dialogue from the .json file
-func load_dialogue():
-	var file = File.new()
-	var f := ''
-	if file.file_exists(dialogue_file):
-		file.open(dialogue_file, file.READ)
-		f = file.get_as_text()
-		file.close()
-		return parse_json(f)
-
 # Create a small gap in time so the dialogue doesn't start again immediately
 func _on_Timer_timeout():
 	turn_on_player()
 	dialogue_active = false
-
 
 # Turn the player's movement on or off if in dialogue
 func turn_on_player():
