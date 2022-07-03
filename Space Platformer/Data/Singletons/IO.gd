@@ -1,7 +1,6 @@
 extends Node
 
-### - 1: internal file I/O handlers functions
-
+# Internal methods (file I/O handling)
 var file_handle = null
 func _open_handle(filename, ModeFlags):
 	file_handle = File.new()
@@ -17,8 +16,7 @@ func _close_handle():
 	if file_handle != null:
 		file_handle.close()
 
-### - 2: boilerplate functions
-
+# Boilerplate
 func save_variant(file_contents, filename):
 	# todo
 	pass

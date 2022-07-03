@@ -21,14 +21,13 @@ func unload_level():
 
 	# set global level node pointer to null
 	Global.level = null
+	UI.default_backdrop.visible = true
 
 func load_level(level_name, params = null):
 	unload_level() # always unload current level first!
 
 	var scene_path = str("res://Levels/", level_name, ".tscn")
-	var level_node = load(scene_path).instance()
-	level_node.name = "Level"
-	Global.game_root.add_child(level_node)
+	var level_node = Global.add_scene(Global.game_root, scene_path, "Level")
 	Global.level = level_node
 
 	# extra params for level continuation/config/etc.
@@ -37,6 +36,7 @@ func load_level(level_name, params = null):
 
 	# automatically set state to "ingame" by default
 	UI.set_menu(UI.MENUS.ingame)
+	UI.default_backdrop.visible = false
 
 func load_game(filename):
 	pass

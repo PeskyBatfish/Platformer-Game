@@ -1,0 +1,114 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Menus/SettingsMenu/Menu_Settings.gd" type="Script" id=1]
+[ext_resource path="res://Fonts/KiriFont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Menus/Backdrop.tscn" type="PackedScene" id=3]
+
+[node name="SettingsMenu" type="Control"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+menu_id = 6
+can_be_closed = true
+
+[node name="Backdrop" parent="." instance=ExtResource( 3 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -276.0
+margin_top = -177.0
+margin_right = 276.0
+margin_bottom = 178.0
+
+[node name="Tabs" type="Tabs" parent="Backdrop"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -210.0
+margin_top = -126.5
+margin_right = 211.0
+margin_bottom = 126.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TabContainer" type="TabContainer" parent="Backdrop/Tabs"]
+margin_right = 170.0
+margin_bottom = 106.0
+
+[node name="ItemList" type="VBoxContainer" parent="Backdrop"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -92.0
+margin_top = -103.5
+margin_right = 92.0
+margin_bottom = 103.5
+custom_constants/separation = 23
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Resume" type="Button" parent="Backdrop/ItemList"]
+margin_right = 184.0
+margin_bottom = 23.0
+custom_fonts/font = ExtResource( 2 )
+text = "Resume"
+flat = true
+
+[node name="Save" type="Button" parent="Backdrop/ItemList"]
+margin_top = 46.0
+margin_right = 184.0
+margin_bottom = 69.0
+custom_fonts/font = ExtResource( 2 )
+disabled = true
+text = "Save"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Load" type="Button" parent="Backdrop/ItemList"]
+margin_top = 92.0
+margin_right = 184.0
+margin_bottom = 115.0
+custom_fonts/font = ExtResource( 2 )
+disabled = true
+text = "Load"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Settings" type="Button" parent="Backdrop/ItemList"]
+margin_top = 138.0
+margin_right = 184.0
+margin_bottom = 161.0
+custom_fonts/font = ExtResource( 2 )
+text = "Settings"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Quit" type="Button" parent="Backdrop/ItemList"]
+margin_top = 184.0
+margin_right = 184.0
+margin_bottom = 207.0
+custom_fonts/font = ExtResource( 2 )
+text = "Quit"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Backdrop/ItemList/Resume" to="." method="_on_Resume_pressed"]
+[connection signal="pressed" from="Backdrop/ItemList/Save" to="." method="_on_Save_pressed"]
+[connection signal="pressed" from="Backdrop/ItemList/Load" to="." method="_on_Load_pressed"]
+[connection signal="pressed" from="Backdrop/ItemList/Settings" to="." method="_on_Settings_pressed"]
+[connection signal="pressed" from="Backdrop/ItemList/Quit" to="." method="_on_Quit_pressed"]

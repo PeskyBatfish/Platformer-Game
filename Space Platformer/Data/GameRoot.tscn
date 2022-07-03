@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
+[ext_resource path="res://Menus/SettingsMenu/Menu_Settings.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Menus/PauseMenu/Menu_Pause.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Menus/QuitToMainMenu/Menu_QuitToMainMenu.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Menus/MainMenu/Menu_Main.tscn" type="PackedScene" id=4]
@@ -24,7 +25,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="DefaultBackdrop" type="ColorRect" parent="HUD/UI_Root"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
 [node name="MainMenu" parent="HUD/UI_Root" instance=ExtResource( 4 )]
+visible = false
 
 [node name="PauseMenu" parent="HUD/UI_Root" instance=ExtResource( 2 )]
 visible = false
@@ -35,6 +46,12 @@ anchor_bottom = 0.5
 
 [node name="QuitToMainMenu" parent="HUD/UI_Root" instance=ExtResource( 3 )]
 visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+
+[node name="SettingsMenu" parent="HUD/UI_Root" instance=ExtResource( 1 )]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
