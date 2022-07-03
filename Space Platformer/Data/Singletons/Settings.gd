@@ -1,14 +1,35 @@
 extends Node
 
-# this is the runtime config database (dictionary object)
-# that contains the current game settings
-var DATA = {}
-func serialize():
-	Global.save_to_file("user://settings.json", DATA)
-func unserialize():
-	DATA = Global.load_from_file("user://settings.json")
+# The settings can be accessed directly -- this has the advantage of
+# super easy values access and update, HOWEVER we need to make sure
+# we remember to call "save_to_disk()" after any setting update!
+var json = {
 
-func get_value(setting):
-	return DATA[setting]
-func set_value(setting, value):
-	DATA[setting] = value
+	# (these are all empty at the moment)
+	"display": {
+
+	},
+	"audio": {
+
+	},
+	"controls": {
+
+	},
+	"game": {
+
+	}
+}
+
+###
+
+func on_window_size_change():
+	# todo
+	pass
+
+func _ready():
+	get_tree().get_root().connect("size_changed", self, "on_window_size_change")
+
+func save_to_disk():
+	IO.save_json(json, "user://config.json")
+func load_from_disk():
+	json = IO.load_json("user://config.json")

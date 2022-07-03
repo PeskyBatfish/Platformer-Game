@@ -1,5 +1,7 @@
 extends Node
 
+var game_root = null
+var level = null
 var textbox = null
 var player = null
 var health = 10

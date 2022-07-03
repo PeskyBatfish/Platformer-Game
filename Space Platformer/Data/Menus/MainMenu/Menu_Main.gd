@@ -2,6 +2,7 @@ extends Menu
 
 func _on_NewGame_pressed():
 	UI.set_menu(UI.MENUS.new_game)
+	Game.load_level("Level_Demo")
 
 func _on_Load_pressed():
 	UI.set_menu(UI.MENUS.load_game)
