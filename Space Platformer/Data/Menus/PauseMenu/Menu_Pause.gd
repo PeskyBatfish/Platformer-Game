@@ -1,16 +1,16 @@
 extends Menu
 
 func _on_Resume_pressed():
-	UI.set_menu(UI.MENUS.ingame)
+	UI.pop_menu()
 
 func _on_Save_pressed():
-	UI.set_menu(UI.MENUS.save_game)
+	UI.set_menu("save_game")
 
 func _on_Load_pressed():
-	UI.set_menu(UI.MENUS.load_game)
+	UI.set_menu("load_game")
 
 func _on_Settings_pressed():
-	UI.set_menu(UI.MENUS.settings)
+	UI.set_menu("settings")
 
 func _on_Quit_pressed():
-	UI.set_menu(UI.MENUS.quit_to_main_menu_confirmation)
+	UI.set_menu("quit_to_main_menu")

@@ -1,0 +1,267 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Menus/SettingsMenu/Menu_Settings.gd" type="Script" id=1]
+[ext_resource path="res://Fonts/KiriFont_16.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Menus/Backdrop.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Menus/SettingsMenu/TabStyle.tres" type="StyleBox" id=4]
+[ext_resource path="res://Menus/SettingsMenu/SillyLabel.gd" type="Script" id=5]
+[ext_resource path="res://Menus/SettingsMenu/SettingBox_Keybind.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Fonts/KiriFont_14.tres" type="DynamicFont" id=7]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[node name="SettingsMenu" type="Control"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+menu_id = "settings"
+parent_menus = PoolStringArray( "main_menu", "pause_menu" )
+can_be_closed = true
+
+[node name="Backdrop" parent="." instance=ExtResource( 3 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -250.0
+margin_top = -177.5
+margin_right = 250.0
+margin_bottom = 177.5
+
+[node name="TabContainer" type="TabContainer" parent="Backdrop"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -225.0
+margin_top = -150.5
+margin_right = 225.0
+margin_bottom = 149.5
+custom_styles/tab_fg = ExtResource( 4 )
+custom_styles/tab_disabled = ExtResource( 4 )
+custom_styles/tab_bg = ExtResource( 4 )
+custom_styles/panel = SubResource( 1 )
+custom_fonts/font = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Controls" type="Tabs" parent="Backdrop/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 30.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Backdrop/TabContainer/Controls"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -2.0
+margin_top = 29.0
+margin_right = 12.0
+margin_bottom = -27.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Backdrop/TabContainer/Controls/ScrollContainer"]
+margin_right = 452.0
+margin_bottom = 234.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Up" parent="Backdrop/TabContainer/Controls/ScrollContainer/VBoxContainer" instance=ExtResource( 6 )]
+margin_right = 452.0
+size_flags_horizontal = 3
+keybind_label = "Move up:"
+keybind_action = "up"
+
+[node name="Left" parent="Backdrop/TabContainer/Controls/ScrollContainer/VBoxContainer" instance=ExtResource( 6 )]
+margin_top = 34.0
+margin_right = 452.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+keybind_label = "Move left:"
+keybind_action = "left"
+
+[node name="Down" parent="Backdrop/TabContainer/Controls/ScrollContainer/VBoxContainer" instance=ExtResource( 6 )]
+margin_top = 68.0
+margin_right = 452.0
+margin_bottom = 98.0
+size_flags_horizontal = 3
+keybind_label = "Move down:"
+keybind_action = "down"
+
+[node name="Right" parent="Backdrop/TabContainer/Controls/ScrollContainer/VBoxContainer" instance=ExtResource( 6 )]
+margin_top = 102.0
+margin_right = 452.0
+margin_bottom = 132.0
+size_flags_horizontal = 3
+keybind_label = "Move right:"
+keybind_action = "right"
+
+[node name="Jump" parent="Backdrop/TabContainer/Controls/ScrollContainer/VBoxContainer" instance=ExtResource( 6 )]
+margin_top = 136.0
+margin_right = 452.0
+margin_bottom = 166.0
+size_flags_horizontal = 3
+keybind_label = "Jump:"
+keybind_action = "jump"
+
+[node name="Shoot" parent="Backdrop/TabContainer/Controls/ScrollContainer/VBoxContainer" instance=ExtResource( 6 )]
+margin_top = 170.0
+margin_right = 452.0
+margin_bottom = 200.0
+size_flags_horizontal = 3
+keybind_label = "Shoot:"
+keybind_action = "shoot"
+
+[node name="Interact" parent="Backdrop/TabContainer/Controls/ScrollContainer/VBoxContainer" instance=ExtResource( 6 )]
+margin_top = 204.0
+margin_right = 452.0
+margin_bottom = 234.0
+size_flags_horizontal = 3
+keybind_label = "Interact:"
+keybind_action = "interact"
+
+[node name="LabelKeyboard" type="Label" parent="Backdrop/TabContainer/Controls"]
+margin_left = 194.0
+margin_top = 8.0
+margin_right = 284.0
+margin_bottom = 23.0
+custom_fonts/font = ExtResource( 7 )
+text = "Keyboard"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LabelController" type="Label" parent="Backdrop/TabContainer/Controls"]
+margin_left = 325.0
+margin_top = 8.0
+margin_right = 430.0
+margin_bottom = 23.0
+custom_fonts/font = ExtResource( 7 )
+text = "Controller"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Display" type="Tabs" parent="Backdrop/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 30.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Backdrop/TabContainer/Display"]
+margin_left = 260.002
+margin_top = 201.844
+margin_right = 406.028
+margin_bottom = 218.844
+custom_fonts/font = ExtResource( 2 )
+text = "Coming soon!"
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Audio" type="Tabs" parent="Backdrop/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 30.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Backdrop/TabContainer/Audio"]
+margin_left = 260.002
+margin_top = 201.844
+margin_right = 406.028
+margin_bottom = 218.844
+custom_fonts/font = ExtResource( 2 )
+text = "Coming soon!"
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Game" type="Tabs" parent="Backdrop/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 30.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="Backdrop/TabContainer/Game"]
+margin_left = 260.002
+margin_top = 201.844
+margin_right = 406.029
+margin_bottom = 218.844
+custom_fonts/font = ExtResource( 2 )
+text = "Coming soon!"
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Back" type="Button" parent="Backdrop"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 71.0
+margin_top = 313.0
+margin_right = -366.0
+margin_bottom = -19.0
+custom_fonts/font = ExtResource( 2 )
+text = "back"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Defaults" type="Button" parent="Backdrop"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 168.0
+margin_top = 313.0
+margin_right = -163.0
+margin_bottom = -19.0
+custom_fonts/font = ExtResource( 2 )
+text = "load defaults"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Apply" type="Button" parent="Backdrop"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 364.0
+margin_top = 313.0
+margin_right = -72.0
+margin_bottom = -21.0
+custom_fonts/font = ExtResource( 2 )
+text = "apply"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="visibility_changed" from="." to="." method="_on_SettingsMenu_visibility_changed"]
+[connection signal="pressed" from="Backdrop/Back" to="." method="_on_Back_pressed"]
+[connection signal="pressed" from="Backdrop/Defaults" to="." method="_on_Defaults_pressed"]
+[connection signal="pressed" from="Backdrop/Apply" to="." method="_on_Apply_pressed"]
