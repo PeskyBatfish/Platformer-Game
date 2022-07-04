@@ -38,7 +38,7 @@ func _physics_process(_delta):
 			$AnimationPlayer.play("Air")
 
 			# Basic air movement
-			if UI.current_menu_id == UI.MENUS.ingame:
+			if UI.current_menu_id == "ingame":
 				if Input.is_action_pressed("right"):
 					velocity.x = lerp(velocity.x, SPEED, 0.1) if velocity.x < SPEED else lerp(velocity.x, SPEED, 0.03)
 					$Sprite.flip_h = true
@@ -61,7 +61,7 @@ func _physics_process(_delta):
 				continue
 
 			# Basic movement
-			if UI.current_menu_id == UI.MENUS.ingame:
+			if UI.current_menu_id == "ingame":
 				if Input.is_action_pressed("right"):
 					velocity.x = lerp(velocity.x, SPEED, 0.1)
 					$AnimationPlayer.play("Walk")
@@ -107,7 +107,7 @@ func is_near_wall():
 	return $Wallchecker.is_colliding() and not $Wallchecker.get_collider().is_in_group("one_way")
 
 func fire():
-	if UI.current_menu_id == UI.MENUS.ingame:
+	if UI.current_menu_id == "ingame":
 		if Input.is_action_just_pressed("shoot") and not is_near_wall():
 			var b = BULLET.instance()
 			if Input.is_action_pressed("down") and not is_on_floor():

@@ -2,34 +2,6 @@ extends Node
 
 var default_backdrop = null
 
-enum MENUS {
-	main_menu,
-	pause_menu,
-
-	new_game,
-	save_game,
-	load_game,
-	quit_to_main_menu_confirmation,
-
-	settings,
-
-	credits,
-	about,
-	splash_screen,
-
-	ingame,
-	inventory,
-	crafting,
-	gestures,
-
-	campaign_selection,
-	mission_selection,
-	scores,
-	player_records,
-
-	MAX_MENU_ITEM_ID
-}
-
 var MENU_RECORDS = {} # this gets filled during runtime
 
 var current_menu_id = null
@@ -40,7 +12,7 @@ func menu_id_is_valid(menu_id):
 		return false
 	# I don't know how to check if variable is a valid enum value...
 	# we'll assume it is valid.. for now!
-	if !(menu_id < MENUS.MAX_MENU_ITEM_ID):
+	if (menu_id == ""):
 		return false
 	return true
 func menu_node_register(node, menu_id):
@@ -55,6 +27,7 @@ func menu_node_register(node, menu_id):
 
 # Internal methods
 func _close_menu(menu_id):
+	current_menu_id = null # temporarily set this to null to avoid input bleeding
 	if MENU_RECORDS.has(menu_id):
 		MENU_RECORDS[menu_id].visible = false
 func _open_menu(menu_id):
@@ -62,21 +35,36 @@ func _open_menu(menu_id):
 		MENU_RECORDS[menu_id].visible = true
 
 # Boilerplate
-func set_menu(menu_id, push_previous = true):
+func set_menu(menu_id, push_previous = true, close_previous = true):
 	if !menu_id_is_valid(menu_id):
 		return false
-	if !MENU_RECORDS.has(menu_id) && menu_id != MENUS.ingame:
+	if !MENU_RECORDS.has(menu_id) && menu_id != "ingame":
 		return false
 
-	# push previous menu on the stack, and close it
+	if menu_id != "ingame" && menu_id != "main_menu":
+		var menu_node = MENU_RECORDS[menu_id]
+
+		if current_menu_id == null:
+			return
+		if !(current_menu_id in menu_node.parent_menus) && !(menu_id in MENU_RECORDS[current_menu_id].parent_menus):
+			return
+
+	# push previous menu on the stack and close it
 	if push_previous:
 		prev_menus_stack.push_back(current_menu_id)
-		print(prev_menus_stack)
-	_close_menu(current_menu_id)
+	if close_previous:
+		_close_menu(current_menu_id)
 
 	# open the new menu and set the current menu ID
 	_open_menu(menu_id)
 	current_menu_id = menu_id
+
+	# special case: empty stack if we're back to the main menu
+	# (this is to prevent stack bleeding)
+	if current_menu_id == "main_menu":
+		prev_menus_stack = []
+
+	print(prev_menus_stack)
 	return true
 func pop_menu():
 	# go back to the last menu saved in the stack (usually the parent menu)
@@ -99,7 +87,7 @@ func _input(event):
 		# if there's a keybind for this menu...
 		if menu_node.default_keybind in InputMap.get_actions() && Input.is_action_just_pressed(menu_node.default_keybind):
 			# ...open this menu if we're inside the parent menu
-			if current_menu_id == menu_node.parent_menu:
+			if current_menu_id in menu_node.parent_menus:
 				set_menu(menu_id)
 				return
 			# ...close this menu if we're inside the current menu

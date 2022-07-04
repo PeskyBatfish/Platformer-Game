@@ -35,7 +35,7 @@ func load_level(level_name, params = null):
 		pass
 
 	# automatically set state to "ingame" by default
-	UI.set_menu(UI.MENUS.ingame)
+	UI.set_menu("ingame")
 	UI.default_backdrop.visible = false
 
 func load_game(filename):

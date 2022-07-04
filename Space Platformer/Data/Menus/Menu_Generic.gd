@@ -1,8 +1,8 @@
 extends Control
 class_name Menu
 
-export(UI.MENUS) var menu_id = UI.MENUS.MAX_MENU_ITEM_ID
-export(UI.MENUS) var parent_menu = UI.MENUS.MAX_MENU_ITEM_ID # used for the keybind input check!
+export(String) var menu_id = ""
+export(PoolStringArray) var parent_menus = [] # used for the keybind input check and input bleed prevention!
 export(String) var default_keybind = ""
 export(bool) var can_be_closed = false
 

@@ -1,16 +1,19 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Menus/QuitToMainMenu/Menu_QuitToMainMenu.gd" type="Script" id=1]
-[ext_resource path="res://Fonts/KiriFont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Fonts/KiriFont.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://Menus/PauseMenu/QuitToMainMenu.gd" type="Script" id=2]
 [ext_resource path="res://Menus/Backdrop.tscn" type="PackedScene" id=3]
 
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 1 )
+
 [node name="QuitToMainMenu" type="Control"]
-script = ExtResource( 1 )
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-menu_id = 5
-parent_menu = 1
+menu_id = "quit_to_main_menu"
+parent_menus = PoolStringArray( "pause_menu" )
 
 [node name="Backdrop" parent="." instance=ExtResource( 3 )]
 anchor_left = 0.5
@@ -26,7 +29,7 @@ margin_bottom = 78.0
 anchor_right = 1.0
 margin_top = 25.0
 margin_bottom = 82.0
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "Quit to main menu?
 unsaved progress will
 be lost!"
@@ -53,7 +56,7 @@ __meta__ = {
 margin_right = 80.0
 margin_bottom = 59.0
 rect_min_size = Vector2( 80, 0 )
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "Yes"
 flat = true
 
@@ -62,7 +65,7 @@ margin_left = 103.0
 margin_right = 183.0
 margin_bottom = 59.0
 rect_min_size = Vector2( 80, 0 )
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "No"
 flat = true
 __meta__ = {
