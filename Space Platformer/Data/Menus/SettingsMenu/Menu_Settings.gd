@@ -14,13 +14,13 @@ func reload_from_saved():
 		keybind.reload_from_saved()
 
 func _on_Defaults_pressed():
-	InputMap.load_from_globals()
-	Settings.json.controls = {}
-	Settings.save_to_disk()
-	reload_from_saved()
+#	InputMap.load_from_globals()
+#	Settings.json.controls = {}
+#	Settings.save_to_disk()
+#	reload_from_saved()
 	# MAYBE ANOTHER TIME...
 #	Settings.has_unsaved_settings = true
-#	UI.set_menu("load_defaults")
+	UI.set_menu("load_defaults", true, false)
 
 func _on_Back_pressed():
 	# MAYBE ANOTHER TIME...

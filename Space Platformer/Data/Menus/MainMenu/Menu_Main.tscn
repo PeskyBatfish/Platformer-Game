@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Menus/MainMenu/Menu_Main.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/KiriFont_16.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Fonts/KiriFont_56.tres" type="DynamicFont" id=3]
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -15,9 +16,21 @@ menu_id = "main_menu"
 [node name="Backdrop" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 1 )
+color = Color( 0.317647, 0.117647, 0.117647, 1 )
 __meta__ = {
 "_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Backdrop"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 125.716
+margin_bottom = -407.284
+custom_fonts/font = ExtResource( 3 )
+text = "The bunny scientist game"
+align = 1
+__meta__ = {
 "_edit_use_anchors_": false
 }
 
@@ -27,11 +40,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -92.0
-margin_top = -103.5
+margin_top = -32.7849
 margin_right = 92.0
-margin_bottom = 103.5
+margin_bottom = 220.215
 custom_constants/separation = 23
 __meta__ = {
+"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 

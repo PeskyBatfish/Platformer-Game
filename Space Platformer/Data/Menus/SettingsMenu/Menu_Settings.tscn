@@ -164,10 +164,10 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="Backdrop/TabContainer/Display"]
-margin_left = 260.002
-margin_top = 201.844
-margin_right = 406.028
-margin_bottom = 218.844
+margin_left = 140.266
+margin_top = 107.643
+margin_right = 286.29
+margin_bottom = 124.644
 custom_fonts/font = ExtResource( 2 )
 text = "Coming soon!"
 script = ExtResource( 5 )
@@ -186,10 +186,10 @@ __meta__ = {
 }
 
 [node name="Label2" type="Label" parent="Backdrop/TabContainer/Audio"]
-margin_left = 260.002
-margin_top = 201.844
-margin_right = 406.028
-margin_bottom = 218.844
+margin_left = 140.266
+margin_top = 107.643
+margin_right = 286.29
+margin_bottom = 124.644
 custom_fonts/font = ExtResource( 2 )
 text = "Coming soon!"
 script = ExtResource( 5 )
@@ -207,10 +207,10 @@ __meta__ = {
 }
 
 [node name="Label3" type="Label" parent="Backdrop/TabContainer/Game"]
-margin_left = 260.002
-margin_top = 201.844
-margin_right = 406.029
-margin_bottom = 218.844
+margin_left = 140.265
+margin_top = 107.643
+margin_right = 286.29
+margin_bottom = 124.644
 custom_fonts/font = ExtResource( 2 )
 text = "Coming soon!"
 script = ExtResource( 5 )

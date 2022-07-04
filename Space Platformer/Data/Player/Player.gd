@@ -20,7 +20,6 @@ const FLOOR_MAX_ANGLE = deg2rad(60)
 var invincible = false
 
 # Variables for bullets
-const BULLET = preload("res://Player/Bullet.tscn")
 var bullet_strength = 10
 
 # Variables for dialogue
@@ -109,23 +108,12 @@ func is_near_wall():
 func fire():
 	if UI.current_menu_id == "ingame":
 		if Input.is_action_just_pressed("shoot") and not is_near_wall():
-			var b = BULLET.instance()
 			if Input.is_action_pressed("down") and not is_on_floor():
-				b.horizontal_dir = 0
-				b.vertical_dir = 1
-				b.position.y = position.y + 16
-				b.position.x = position.x
+				Bullets.spawn_bullet(0, Vector2(position.x, position.y + 16), Vector2(0, 1), bullet_strength)
 			elif Input.is_action_pressed("up"):
-				b.horizontal_dir = 0
-				b.vertical_dir = -1
-				b.position.y = position.y - 128
-				b.position.x = position.x
+				Bullets.spawn_bullet(0, Vector2(position.x, position.y - 128), Vector2(0, -1), bullet_strength)
 			else:
-				b.horizontal_dir = direction
-				b.position.y = position.y - 58
-				b.position.x = position.x + (direction * 48)
-			b.bullet_strength = bullet_strength
-			get_parent().add_child(b)
+				Bullets.spawn_bullet(0, Vector2(position.x + (direction * 48), position.y - 58), Vector2(direction, 0), bullet_strength)
 
 # Knockback and invincibility after getting hit by an enemy
 func knockback(var enemyposx, damage_taken):

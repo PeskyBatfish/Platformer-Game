@@ -32,6 +32,7 @@ Game="*res://Singletons/Game.gd"
 Inventory="*res://Singletons/Inventory.gd"
 Settings="*res://Singletons/Settings.gd"
 IO="*res://Singletons/IO.gd"
+Bullets="*res://Singletons/Bullets.gd"
 
 [debug]
 

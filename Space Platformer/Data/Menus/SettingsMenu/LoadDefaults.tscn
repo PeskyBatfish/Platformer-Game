@@ -13,6 +13,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 menu_id = "load_defaults"
+parent_menus = PoolStringArray( "settings" )
 
 [node name="Backdrop" parent="." instance=ExtResource( 3 )]
 anchor_left = 0.5
