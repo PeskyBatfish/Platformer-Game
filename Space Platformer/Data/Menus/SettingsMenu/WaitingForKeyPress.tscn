@@ -56,7 +56,8 @@ anchor_right = 1.0
 margin_top = 115.0
 margin_bottom = 142.0
 custom_fonts/font = ExtResource( 4 )
-text = "ENTER: Confirm    ESC: Cancel"
+text = "ENTER: Confirm    ESC: Cancel
+CANC: Delete keybind"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false

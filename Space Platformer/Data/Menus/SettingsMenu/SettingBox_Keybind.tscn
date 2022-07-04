@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Menus/Backdrop_thin.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Fonts/KiriFont_16.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Fonts/KiriFont_14.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Menus/SettingsMenu/SettingBox_Keybind.gd" type="Script" id=3]
 [ext_resource path="res://Fonts/KiriFont_12.tres" type="DynamicFont" id=4]
 [ext_resource path="res://Menus/SettingsMenu/SettingBox_Keybind_Field.gd" type="Script" id=5]

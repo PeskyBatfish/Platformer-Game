@@ -3,6 +3,7 @@ extends Node
 var game_root = null
 var level = null
 var textbox = null
+var settings_menu = null
 var config_keypress_dialog = null
 var player = null
 var health = 10

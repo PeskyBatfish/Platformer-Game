@@ -5,7 +5,7 @@ export(bool) var is_joypad = false
 
 var action = ""
 
-var keybind_backup = null
+#var keybind_backup = null
 var keybind = null
 
 func refresh_label():
@@ -53,5 +53,6 @@ func set_action(value):
 
 func _on_Field_pressed():
 	Global.config_keypress_dialog.action = action
-	Global.config_keypress_dialog.get_node("Backdrop/KeyText").text = text
+	Global.config_keypress_dialog.only_joypad = is_joypad
+	Global.config_keypress_dialog.set_bind(keybind)
 	UI.set_menu("wait_for_keypress", true, false)
